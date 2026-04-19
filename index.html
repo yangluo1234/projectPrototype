@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Bubble Bloom - Prototype</title>
+    <script src="https://unpkg.com/konva@10/konva.min.js"></script>
+    <script src="https://unpkg.com/tone@15.0.4/build/Tone.js"></script>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="konvaSetup.js" defer></script>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <div id="stageContainer"></div>
+
+      <section class="floatingToolbar">
+        <div class="toolHeader">
+          <h1>Bubble Bloom</h1>
+          <p>
+            Choose a shape and colour, then click the canvas to place it. Click
+            the placed shape again to burst it.
+          </p>
+        </div>
+
+        <div class="toolGroup">
+          <h2>Canvas Background</h2>
+          <div class="buttonRow">
+            <button id="lightCanvasBtn">Light</button>
+            <button id="darkCanvasBtn">Dark</button>
+          </div>
+        </div>
+
+        <div class="toolGroup">
+          <h2>Shape</h2>
+          <div class="buttonRow">
+            <button class="burstTypeBtn" data-burst="circle">Circle</button>
+            <button class="burstTypeBtn" data-burst="triangle">Triangle</button>
+            <button class="burstTypeBtn" data-burst="star">Star</button>
+          </div>
+        </div>
+
+        <div class="toolGroup">
+          <h2>Colour</h2>
+          <div class="colourPaletteBox">
+            <button
+              class="paletteColour"
+              id="palette01"
+              data-colour="#ff5fa2"
+            ></button>
+            <button
+              class="paletteColour"
+              id="palette02"
+              data-colour="#ff8a5b"
+            ></button>
+            <button
+              class="paletteColour"
+              id="palette03"
+              data-colour="#ffb703"
+            ></button>
+            <button
+              class="paletteColour"
+              id="palette04"
+              data-colour="#8ac926"
+            ></button>
+            <button
+              class="paletteColour"
+              id="palette05"
+              data-colour="#00c2a8"
+            ></button>
+            <button
+              class="paletteColour"
+              id="palette06"
+              data-colour="#00b4ff"
+            ></button>
+            <button
+              class="paletteColour"
+              id="palette07"
+              data-colour="#7b61ff"
+            ></button>
+            <button
+              class="paletteColour"
+              id="palette08"
+              data-colour="#ffffff"
+            ></button>
+          </div>
+        </div>
+
+        <div class="toolGroup actionsGroup">
+          <h2>Actions</h2>
+          <div class="buttonRow">
+            <button id="clearBtn">Clear</button>
+            <button id="saveFileBtn">Save</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
