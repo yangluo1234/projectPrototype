@@ -5,6 +5,15 @@ let currentCanvasTone = "light";
 let currentBurstType = "circle";
 let currentColour = "#ff5fa2";
 
+const introDialog = document.getElementById("intro-dialog");
+const dialogCloseButton = document.getElementById("dialog-close-button");
+//intro dialog setup
+introDialog.showModal();
+dialogCloseButton.addEventListener("click", () => {
+  introDialog.close();
+  Tone.start();
+});
+
 // -----------------------------
 // Tone.js setup
 // -----------------------------
