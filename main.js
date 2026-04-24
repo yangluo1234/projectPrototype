@@ -348,6 +348,7 @@ function playBurstSound() {
 // -----------------------------
 // Clear/SaveActions
 // -----------------------------
+//This is the logic I got from the class example.
 
 const clearBtn = document.getElementById("clearBtn");
 const saveFileBtn = document.getElementById("saveFileBtn");
