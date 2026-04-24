@@ -4,6 +4,13 @@
 // Default settings for the canvas background, burst type and colour.
 // These variables are used across this file so are declared here at the top for
 // easy access and modification.
+
+//The shpes I used from Konva library are Circle, RegularPolygon and Star.
+//Reference:
+//-https://konvajs.org/api/Konva.RegularPolygon.html
+//-https://konvajs.org/api/Konva.Circle.html
+//-https://konvajs.org/api/Konva.Star.html
+
 let currentCanvasTone = "light";
 let currentBurstType = "circle";
 let currentColour = "#ff5fa2";
