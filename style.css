@@ -1,3 +1,9 @@
+/* Design Decisions */
+/* - Rounded corners and soft shadows for a friendly, approachable feel
+   - A vibrant yet harmonious color palette to evoke creativity and playfulness
+   - Clear typography hierarchy for easy scanning and usability
+*/
+
 @import url("https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   box-sizing: border-box;

@@ -1,5 +1,5 @@
-// default settings for the canvas background, burst type and colour.
-//These variables are used across this file so are declared here at the top for
+// Default settings for the canvas background, burst type and colour.
+// These variables are used across this file so are declared here at the top for
 // easy access and modification.
 let currentCanvasTone = "light";
 let currentBurstType = "circle";
