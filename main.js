@@ -1,3 +1,6 @@
+//This is the main js file for the project.
+//It handles the core logic for user interactions, burst creation and sound effects.
+
 // Default settings for the canvas background, burst type and colour.
 // These variables are used across this file so are declared here at the top for
 // easy access and modification.
