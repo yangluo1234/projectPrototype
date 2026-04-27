@@ -1,5 +1,6 @@
 // Bubble Bloom canvas setup
 // Konva is used here to create a full-screen canvas area for placing burst marks.
+//The canvas size is set to the size of the browser window.
 
 const stage = new Konva.Stage({
   container: "stageContainer",
