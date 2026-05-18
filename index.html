@@ -4,13 +4,14 @@ It sets up the structure of the webpage, including the canvas for drawing,
 a dialog for the noise warning, and a toolbar for user interactions.
 The canvas is created and managed using the Konva library, while the Tone.js library.
 -->
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Bubble Bloom - Prototype</title>
+    <title>Bubble Bloom</title>
     <script src="https://unpkg.com/konva@10/konva.min.js"></script>
     <script src="https://unpkg.com/tone@15.0.4/build/Tone.js"></script>
     <link rel="stylesheet" href="reset.css" />
@@ -22,15 +23,21 @@ The canvas is created and managed using the Konva library, while the Tone.js lib
     <main class="container">
       <div id="stageContainer"></div>
       <dialog id="intro-dialog">
-        <p>This page will make some noise!</p>
+        <p>This page will make some noise.</p>
+        <p>Choose a shape and colour.</p>
+        <p>Tap for a small shape, or hold to grow it.</p>
+        <p>Click the shape again to burst it.</p>
         <button id="dialog-close-button">enter</button>
       </dialog>
       <section class="floatingToolbar">
         <div class="toolHeader">
           <h1>Bubble Bloom</h1>
           <p>
-            Choose a shape and colour, then click the canvas to place it. Click
-            the placed shape again to burst it.
+            Choose a shape and colour.
+            <span class="hintText"
+              >Tap for a small shape, or hold to grow it.</span
+            >
+            Click the shape again to burst it.
           </p>
         </div>
 
