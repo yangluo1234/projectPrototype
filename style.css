@@ -1,9 +1,16 @@
-/* Design Decisions */
-/* - Rounded corners and soft shadows for a friendly, approachable feel
-   - A vibrant yet harmonious color palette to evoke creativity and playfulness
-   - Clear typography hierarchy for easy scanning and usability
+/* Design Decisions Brief:
+ Bubble Bloom is designed to feel playful, approachable, and visually engaging, 
+ with a focus on fun and creativity. 
+ Rounded corners, soft shadows, and rainbow colours support the playful
+ and friendly character rather than a technical tool aesthetic. 
+ Clear grouping, typeography and spacing improve readability and 
+ help users quickly find the controls they need. 
 */
 
+/*
+The font "Sour Gummy" was chosen for its playful and rounded design, 
+which complements the overall aesthetic of the Bubble Bloom project. 
+*/
 @import url("https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   box-sizing: border-box;
@@ -11,6 +18,10 @@
   font-family: "Sour Gummy", sans-serif;
 }
 
+/*
+The colour palette is designed to be vibrant and cheerful, 
+with a range of hues that evoke a sense of fun and creativity. 
+*/
 :root {
   --pink: #ff5fa2;
   --coral: #ff8a5b;
@@ -57,37 +68,87 @@ body {
   height: 100%;
   background: var(--lightCanvas);
 }
+/*
+The intro dialog is styled like a welcoming entry card, with a 
+border and shadow to make it feel like a tangible object on the screen. 
+*/
 #intro-dialog {
-  border: none;
-  border-radius: 1rem;
-  padding: 1.5rem 2rem;
+  border: 3px solid var(--purple);
+  border-radius: 1.4rem;
+  padding: 1.8rem 2rem 1.5rem;
   margin: auto;
-  max-width: 420px;
-}
-#intro-dialog p {
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  color: var(--textDark);
+  width: min(440px, calc(100vw - 2rem));
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.16),
+    0 4px 14px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(14px);
   text-align: center;
 }
+/*
+The backdrop of the dialog is styled with a blured effect to 
+create a sense of depth and focus on the dialog content, while still 
+allowing the playful and colouful canvas to be visible in the background.  
+ */
+
+#intro-dialog::backdrop {
+  background: rgba(22, 25, 34, 0.28);
+  backdrop-filter: blur(3px);
+}
+
+#intro-dialog p {
+  margin: 0 0 0.7rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--textDark);
+}
+
+#intro-dialog p:first-child {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 0.9rem;
+}
+
 #dialog-close-button {
-  margin-top: 1.2rem;
-  background: var(--blue);
-  color: white;
-  padding: 0.75rem 1.2rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: #f8f5f0;
+  padding: 0.8rem 1.4rem;
   border-radius: var(--radiusRound);
   border: none;
   font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  display: block;
-  margin: 0 auto;
+  display: inline-block;
+  box-shadow: 0 10px 24px rgba(123, 97, 255, 0.22);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
 }
 
-#intro-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.25);
+#dialog-close-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(123, 97, 255, 0.28);
+}
+
+#dialog-close-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+/*
+The hint text is styled to be bold and colourful, making it stand out and 
+catch the user's attention. This encourages users to read the instructions and 
+engage with the tool in a playful and creative way.  
+ */
+.hintText {
+  font-weight: 700;
+  color: var(--purple);
 }
 
 /* Floating toolbar */
+/* The toolbar uses transparency and blur effects so it remains 
+readable while still feeling visually connected to the canvas behind it.  */
 .floatingToolbar {
   position: absolute;
   top: 1.2rem;
@@ -103,7 +164,12 @@ body {
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
 }
-
+/*
+The header of the toolbar is designed to be visually distinct, 
+with a larger font size and a bold colour to make it stand out.
+This helps users quickly indentify the purpose the toolbar 
+and understand the interaction quickly without leaving the cavans area.
+ */
 .toolHeader {
   display: flex;
   flex-direction: column;
@@ -142,6 +208,11 @@ body {
   gap: 0.55rem;
 }
 
+/* 
+The buttons are styled with rounded corners, vibrant colours.
+The soft motion effects and shadows make the controls feel responsive,
+but remain subtle so the canvas interaction stays the main focus. 
+*/
 button {
   border: none;
   border-radius: var(--radiusRound);
@@ -214,6 +285,12 @@ button:focus-visible {
   gap: 0.6rem;
 }
 
+/* 
+Circular colour buttons echo the colorful visual language of Bubble Bloom,
+and make the colour selections feel more like playful choices rather than 
+technical setting. The hover effects adds a sense of interactivity and fun,
+encouraging users to explore the different colour options. 
+ */
 .paletteColour {
   width: 2.5rem;
   height: 2.5rem;
@@ -253,6 +330,13 @@ button:focus-visible {
   border-color: #dcdcdc;
 }
 
+/* 
+The actions sectiion is visually separated from the main craetive controls, 
+with a clear border and spacing to indicate that these are more about 
+managing the canvas and creations rather than directly influencing the 
+creative process. This helps users distinguish making actions from file or 
+reset actions more easily, and supports a smoother creative flow. 
+ */
 .actionsGroup {
   padding-top: 0.4rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);

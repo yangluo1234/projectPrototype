@@ -1,5 +1,5 @@
 <!--
-This is the main HTML file for the prototype of the Bubble Bloom project.
+This is the main HTML file for the Bubble Bloom project.
 It sets up the structure of the webpage, including the canvas for drawing,
 a dialog for the noise warning, and a toolbar for user interactions.
 The canvas is created and managed using the Konva library, while the Tone.js library.
@@ -11,6 +11,24 @@ The canvas is created and managed using the Konva library, while the Tone.js lib
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/site.webmanifest" />
     <title>Bubble Bloom</title>
     <script src="https://unpkg.com/konva@10/konva.min.js"></script>
     <script src="https://unpkg.com/tone@15.0.4/build/Tone.js"></script>
@@ -22,13 +40,26 @@ The canvas is created and managed using the Konva library, while the Tone.js lib
   <body>
     <main class="container">
       <div id="stageContainer"></div>
+      <!--
+      The intro dialog provides users with instructions on how to interact with the page,
+      as well as a warning about the noise that will be generated. It is designed to be simple and straightforward. 
+      This supports learnability without overwhelming users with too much information at once,
+      and allows them to quickly understand how to use the page and what to expect.
+      -->
       <dialog id="intro-dialog">
+        <p>Bubble Bloom</p>
         <p>This page will make some noise.</p>
         <p>Choose a shape and colour.</p>
         <p>Tap for a small shape, or hold to grow it.</p>
         <p>Click the shape again to burst it.</p>
         <button id="dialog-close-button">enter</button>
       </dialog>
+      <!--
+      The floating toolbar groups controls by task (canvas background colour,
+      shape type, colour, and actions)) to make it easier for users to find and use 
+      the controls they need. This keeps the interface organised and user-friendly,
+      while still supporting creative play and exploration. 
+      -->
       <section class="floatingToolbar">
         <div class="toolHeader">
           <h1>Bubble Bloom</h1>
@@ -48,7 +79,13 @@ The canvas is created and managed using the Konva library, while the Tone.js lib
             <button id="darkCanvasBtn">Dark</button>
           </div>
         </div>
-
+        <!--
+        Shape selection is limited to three options (circle, triangle, and star)
+        so the tool stays easy to learn,
+        Circle feels soft and approachable, triangle adds contrast and direction, 
+        and star feels brighter and more playful.
+        This gives users clear visual variation without making the interface too complex. 
+        -->
         <div class="toolGroup">
           <h2>Shape</h2>
           <div class="buttonRow">
@@ -57,7 +94,12 @@ The canvas is created and managed using the Konva library, while the Tone.js lib
             <button class="burstTypeBtn" data-burst="star">Star</button>
           </div>
         </div>
-
+        <!--
+        The colour palette provides a range of options for users to choose from,
+        making it easy for them to find a colour that suits their preferences and mood.
+        This keeps the tool fun and expressive, while still supporting creativity and 
+        playfulness. 
+        -->
         <div class="toolGroup">
           <h2>Colour</h2>
           <div class="colourPaletteBox">
@@ -103,7 +145,11 @@ The canvas is created and managed using the Konva library, while the Tone.js lib
             ></button>
           </div>
         </div>
-
+        <!--
+        The actions section includes a clear button to reset the canvas and a save button to download the current artwork as an image file. 
+        This allows users to easily manage their creations and share them with others,
+        fitting with the playful and creative nature of the tool. 
+        -->
         <div class="toolGroup actionsGroup">
           <h2>Actions</h2>
           <div class="buttonRow">

@@ -15,12 +15,14 @@ stage.add(backgroundLayer);
 stage.add(burstLayer);
 
 // A simple background rect makes it easy to switch between light and dark canvas tones.
+//The default background colour is set to a dark tone,
+//which can be changed to a light tone by clicking the "light" button in the UI.
 const backgroundRect = new Konva.Rect({
   x: 0,
   y: 0,
   width: stage.width(),
   height: stage.height(),
-  fill: "#f8f5f0",
+  fill: "#1f2330",
 });
 
 backgroundLayer.add(backgroundRect);
