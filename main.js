@@ -13,6 +13,16 @@ Reference:
 -https://konvajs.org/api/Konva.Star.html
  */
 
+/* Performance optimisations
+
+- Reducing the number of droplets in each burst helps performance optimise 
+as more bursts are created on the canvas, the speed can slow down if there are too
+many shapes to render. 
+- Reducing the shadow blur can also help performance, as complex shadows 
+can be computationally expensive to render, especially when there are many shapes
+on the canvas. 
+*/
+
 /* 
 These global variables hold the current/default visual and audio choices
 consistently across placement and burst creation, 
@@ -588,6 +598,9 @@ function createDropletShape(x, y, size, colour, burstType = currentBurstType) {
 //centreRadius is the size of the centre mark,
 //dropletCount is the number of smaller marks that spread out from the centre,
 //and spreadDistance is how far the smaller marks can spread out from the centre.
+
+//Limiting the number of droplets can help maintain performance as more bursts
+//are created on the canvas, while still creating a visually satisfying burst effects.
 
 function createBurst(
   x,
