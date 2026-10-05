@@ -1,163 +1,39 @@
-<!--
-This is the main HTML file for the Bubble Bloom project.
-It sets up the structure of the webpage, including the canvas for drawing,
-a dialog for the noise warning, and a toolbar for user interactions.
-The canvas is created and managed using the Konva library, while the Tone.js library.
--->
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/assets/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/assets/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/assets/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/assets/site.webmanifest" />
-    <title>Bubble Bloom</title>
-    <script src="https://unpkg.com/konva@10/konva.min.js"></script>
-    <script src="https://unpkg.com/tone@15.0.4/build/Tone.js"></script>
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="konvaSetup.js" defer></script>
-    <script src="main.js" defer></script>
-  </head>
-  <body>
-    <main class="container">
-      <div id="stageContainer"></div>
-      <!--
-      The intro dialog provides users with instructions on how to interact with the page,
-      as well as a warning about the noise that will be generated. It is designed to be simple and straightforward. 
-      This supports learnability without overwhelming users with too much information at once,
-      and allows them to quickly understand how to use the page and what to expect.
-      -->
-      <dialog id="intro-dialog">
-        <p>Bubble Bloom</p>
-        <p>This page will make some noise.</p>
-        <p>Choose a shape and colour.</p>
-        <p>Tap for a small shape, or hold to grow it.</p>
-        <p>Click the shape again to burst it.</p>
-        <button id="dialog-close-button">enter</button>
-      </dialog>
-      <!--
-      The floating toolbar groups controls by task (canvas background colour,
-      shape type, colour, and actions)) to make it easier for users to find and use 
-      the controls they need. This keeps the interface organised and user-friendly,
-      while still supporting creative play and exploration. 
-      -->
-      <section class="floatingToolbar">
-        <div class="toolHeader">
-          <h1>Bubble Bloom</h1>
-          <p>
-            Choose a shape and colour.
-            <span class="hintText"
-              >Tap for a small shape, or hold to grow it.</span
-            >
-            Click the shape again to burst it.
-          </p>
-        </div>
-
-        <div class="toolGroup">
-          <h2>Canvas Background</h2>
-          <div class="buttonRow">
-            <button id="lightCanvasBtn">Light</button>
-            <button id="darkCanvasBtn">Dark</button>
-          </div>
-        </div>
-        <!--
-        Shape selection is limited to three options (circle, triangle, and star)
-        so the tool stays easy to learn,
-        Circle feels soft and approachable, triangle adds contrast and direction, 
-        and star feels brighter and more playful.
-        This gives users clear visual variation without making the interface too complex. 
-        -->
-        <div class="toolGroup">
-          <h2>Shape</h2>
-          <div class="buttonRow">
-            <button class="burstTypeBtn" data-burst="circle">Circle</button>
-            <button class="burstTypeBtn" data-burst="triangle">Triangle</button>
-            <button class="burstTypeBtn" data-burst="star">Star</button>
-          </div>
-        </div>
-        <!--
-        The colour palette provides a range of options for users to choose from,
-        making it easy for them to find a colour that suits their preferences and mood.
-        This keeps the tool fun and expressive, while still supporting creativity and 
-        playfulness. 
-        -->
-        <div class="toolGroup">
-          <h2>Colour</h2>
-          <div class="colourPaletteBox">
-            <button
-              class="paletteColour"
-              id="palette01"
-              data-colour="#ff5fa2"
-            ></button>
-            <button
-              class="paletteColour"
-              id="palette02"
-              data-colour="#ff8a5b"
-            ></button>
-            <button
-              class="paletteColour"
-              id="palette03"
-              data-colour="#ffb703"
-            ></button>
-            <button
-              class="paletteColour"
-              id="palette04"
-              data-colour="#8ac926"
-            ></button>
-            <button
-              class="paletteColour"
-              id="palette05"
-              data-colour="#00c2a8"
-            ></button>
-            <button
-              class="paletteColour"
-              id="palette06"
-              data-colour="#00b4ff"
-            ></button>
-            <button
-              class="paletteColour"
-              id="palette07"
-              data-colour="#7b61ff"
-            ></button>
-            <button
-              class="paletteColour"
-              id="palette08"
-              data-colour="#ffffff"
-            ></button>
-          </div>
-        </div>
-        <!--
-        The actions section includes a clear button to reset the canvas and a save button to download the current artwork as an image file. 
-        This allows users to easily manage their creations and share them with others,
-        fitting with the playful and creative nature of the tool. 
-        -->
-        <div class="toolGroup actionsGroup">
-          <h2>Actions</h2>
-          <div class="buttonRow">
-            <button id="clearBtn">Clear</button>
-            <button id="saveFileBtn">Save</button>
-          </div>
-        </div>
-      </section>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#202334"><meta name="description" content="An interactive audiovisual playground. Grow a shape, release it, and let it bloom.">
+  <title>Bubble Bloom — a little room for play</title>
+  <link rel="icon" href="./assets/favicon-32x32.png"><link rel="manifest" href="./assets/site.webmanifest">
+  <link rel="stylesheet" href="./style.css?v=2"><script type="module" src="./main.js?v=2"></script>
+</head>
+<body>
+  <main>
+    <canvas id="canvas" tabindex="0" aria-label="Drawing canvas. Click or hold to grow a shape. Click a glowing shape to bloom. With keyboard: arrow keys move the cursor, hold Space to grow, Enter blooms the nearest shape, Escape cancels."></canvas>
+    <header class="masthead"><div><h1>Bubble Bloom<span>✳</span></h1><p>A little room for play.</p></div><button id="help" aria-label="Show interactive introduction">How to play <span aria-hidden="true">↗</span></button></header>
+    <section class="panel" aria-label="Creative tools">
+      <div class="panel-heading"><span class="eyebrow">YOUR PLAYGROUND</span><button id="collapse" aria-expanded="true" aria-controls="tools">Hide tools <span aria-hidden="true">−</span></button></div>
+      <div id="tools">
+        <fieldset><legend>Shape</legend><div class="segmented" id="shapes">
+          <button data-shape="circle" aria-pressed="true"><span aria-hidden="true">●</span> Circle</button><button data-shape="triangle" aria-pressed="false"><span aria-hidden="true">▲</span> Triangle</button><button data-shape="star" aria-pressed="false"><span aria-hidden="true">✦</span> Star</button>
+        </div></fieldset>
+        <fieldset><legend>Colour</legend><div class="palette" id="colours"></div></fieldset>
+        <div class="settings"><fieldset><legend>Canvas</legend><div class="segmented"><button data-tone="dark" aria-pressed="true">Dark</button><button data-tone="light" aria-pressed="false">Light</button></div></fieldset><label class="motion"><input id="motion" type="checkbox"> Less motion</label></div>
+      </div>
+        <div class="audio-row"><button id="mute" aria-pressed="true" aria-label="Mute sound">Sound off</button><label for="volume">Volume</label><input id="volume" type="range" min="0" max="100" value="45" aria-label="Master volume"><output id="volumeValue" for="volume">45%</output></div>
+      <div class="actions"><button id="undo" disabled>↶ Undo</button><button id="clear" disabled>Clear</button><button id="save" class="primary">Save PNG <span aria-hidden="true">↗</span></button></div>
+    </section>
+    <footer><span id="hint">Tap or hold · tap again to bloom</span><span id="count">0 blooms</span></footer>
+    <p id="status" class="sr-only" role="status" aria-live="polite"></p>
+    <dialog id="intro" aria-labelledby="intro-title">
+      <span class="eyebrow">AN AUDIOVISUAL PLAYGROUND</span><h2 id="intro-title">Make a little<br>beautiful noise.</h2>
+      <div class="demo" aria-hidden="true"><span class="demo-shape"></span><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p>Choose a shape and colour.<br>Tap to place, or hold to grow.<br>Tap again to bloom.</p>
+      <p class="quiet">Glowing outlines are ready to play.<br>Flat patterns are the traces you leave.</p>
+      <div class="entry-actions"><button id="startSound" class="primary">Start with sound</button><button id="startSilent">Start muted</button></div>
+      <button id="skip" class="text-button">Skip intro · play muted</button>
+    </dialog>
+    <noscript>Bubble Bloom needs JavaScript to draw and play sound.</noscript>
+  </main>
+</body>
 </html>

@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {BloomAudio,MAX_VOICES,soundFor} from '../audio.js';
+const param=()=>({value:0,events:[],cancelScheduledValues(){},setValueAtTime(v){this.value=v;},setTargetAtTime(v){this.value=v;this.events.push(v);},linearRampToValueAtTime(v){this.value=v;},exponentialRampToValueAtTime(v){this.value=v;}});
+const node=()=>({gain:param(),frequency:param(),Q:param(),connect(n){return n;},disconnect(){},start(){},stop(){}});
+function setup(){const a=new BloomAudio();a.muted=false;a.bus=node();a.master=node();a.ctx={state:'running',currentTime:0,createGain:node,createBiquadFilter:node,createOscillator:node};return a;}
+test('burst size changes register, timbre and tail, with restrained level',()=>{for(const type of ['circle','triangle','star']){const small=soundFor(type,16),big=soundFor(type,68);assert.ok(big.frequency<small.frequency);assert.ok(big.cutoff<small.cutoff);assert.ok(big.duration>small.duration);assert.equal(big.level,small.level);assert.deepEqual(soundFor(type,100),big);}});
+test('growth starts at 220Hz, maps continuously and clamps at the limit',()=>{for(const type of ['circle','triangle','star']){const a=setup();a.startGrow(type);assert.equal(a.grow.oscs[0].frequency.value,220);a.updateGrow(.5);assert.ok(Math.abs(a.grow.oscs[0].frequency.value-220*Math.sqrt(2))<1e-8);a.updateGrow(2);assert.equal(a.grow.oscs[0].frequency.value,440);a.limit();assert.equal(a.grow.gain.gain.value,.009);}});
+test('rapid clicks remain bounded including fading voices; mute cancels growth',()=>{const a=setup();a.startGrow('star');for(let i=0;i<100;i++)a.play('star',68);assert.equal(a.voices.size,MAX_VOICES);a.setMuted(true);assert.equal(a.grow,null);assert.ok([...a.voices].every(v=>v.stopped));assert.equal(a.master.gain.value,0);assert.equal(a.voice('circle',220,1,.1),null);for(const v of [...a.voices])for(const o of v.oscs)o.onended();assert.equal(a.voices.size,0);});
